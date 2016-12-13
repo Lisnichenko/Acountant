@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Admin Home Page</title>
+    <!-- Bootstrap -->
+    <link th:href="@{bootstrap/css/bootstrap.min.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{bootstrap/css/bootstrap-responsive.min.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{assets/DT_bootstrap.css}" rel="stylesheet" media="screen"/>
+    <link th:href="@{assets/styles.css}" rel="stylesheet" media="screen"/>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script th:src="@{http://html5shim.googlecode.com/svn/trunk/html5.js}"></script>
+    <![endif]-->
+    <script th:src="@{vendors/modernizr-2.6.2-respond-1.1.0.min.js}"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header(activeTab = 'Counterparty')"></div>
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div  th:replace="fragments/menu_left :: menu"></div>
+
+        <!--/span-->
+        <div class="span9" id="content">
+            <div class="row-fluid">
+            <!-- block -->
+            <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Counterparty List</div>
+            </div>
+            <div class="block-content collapse in">
+            <div class="span12">
+            <div class="table-toolbar">
+                <div class="btn-group">
+                    <a th:href="@{counterparty/add}"><button class="btn btn-success">Add New <i class="icon-plus icon-white"></i></button></a>
+                </div>
+                <!--<div class="btn-group pull-right">-->
+                    <!--<button data-toggle="dropdown" class="btn dropdown-toggle">Tools <span class="caret"></span></button>-->
+                    <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#">Print</a></li>-->
+                        <!--<li><a href="#">Save as PDF</a></li>-->
+                        <!--<li><a href="#">Export to Excel</a></li>-->
+                    <!--</ul>-->
+                <!--</div>-->
+            </div>
+
+            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example2">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name </th>
+                    <th>Code</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cp : ${counterparty}">
+                    <td th:text="${cp.counterpartyId}"></td>
+                    <td><a th:href="@{counterparty/{id}(id=${cp.counterpartyId})}"
+                           th:text="${cp.shortName}"></a></td>
+                    <td th:text="${cp.regNumber}"></td>
+                    <td th:text="${cp.type}"></td>
+                    <td th:text="${cp.status}"></td>
+                    <td>
+                        <a th:href="@{counterparty/{id}/document(id=${cp.counterpartyId})}"> document</a>
+                        <a th:href="@{counterparty/{id}/address(id=${cp.counterpartyId})}"> address</a>
+                        <a th:href="@{counterparty/{id}/contacts(id=${cp.counterpartyId})}"> contacts</a>
+                        <a th:href="@{counterparty/{id}/finance(id=${cp.counterpartyId})}"> finance</a></td>
+                </tr>
+                </tbody>
+            </table>
+            </div>
+            </div>
+            </div>
+            <!-- /block -->
+
+
+            </div>
+
+        </div>
+    </div>
+    <hr/>
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+<!--/.fluid-container-->
+<script th:src="@{vendors/jquery-1.9.1.js}"></script>
+<script th:src="@{bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{vendors/datatables/js/jquery.dataTables.min.js}"></script>
+
+
+<script th:src="@{assets/scripts.js}"></script>
+<script th:src="@{assets/DT_bootstrap.js}"></script>
+<script>
+        $(function() {
+
+        });
+        </script>
+</body>
+
+</html>

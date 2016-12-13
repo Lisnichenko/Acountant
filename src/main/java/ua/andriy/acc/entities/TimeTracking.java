@@ -1,6 +1,7 @@
 package ua.andriy.acc.entities;
 
 import lombok.Data;
+import ua.andriy.acc.entities.Enums.TimeTrackingTypeEnum;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -14,12 +15,12 @@ public class TimeTracking {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long tt_id;
+    private Long ttId;
     //filled in service class any hard relations on db level.
-    private Long counterparty_id;
+    private Long counterpartyId;
 
-    private Date date_from;
-    private Date date_to;
+    private Date dateFrom;
+    private Date dateTo;
     @Enumerated(EnumType.STRING)
     private TimeTrackingTypeEnum reason;
     private String comments;

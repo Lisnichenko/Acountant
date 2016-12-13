@@ -16,10 +16,10 @@ import java.sql.Date;
 public class Salary {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long salary_id;
+    private Long salaryId;
 
     //filled in service class any hard relations on db level.
-    private Long counterparty_id;
+    private Long counterpartyId;
     private Date dateCulcSalary;
     private boolean isCash;
     private Integer avansProcent;

@@ -17,7 +17,7 @@ public class Holiday {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long holiday_id;
+    private Long holidayId;
 
     private Date event;
     private String name;

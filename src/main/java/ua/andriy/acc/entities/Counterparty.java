@@ -2,10 +2,13 @@ package ua.andriy.acc.entities;
 
 
 import lombok.*;
+import ua.andriy.acc.entities.Enums.CounterpartyStatusEnum;
+import ua.andriy.acc.entities.Enums.CounterpartySubTypeEnum;
+import ua.andriy.acc.entities.Enums.CounterpartyTypeEnum;
 
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -18,15 +21,20 @@ import java.util.Set;
 public class Counterparty {
 
     @Id
-    @Getter
+    @Setter
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "counterparty_id",nullable = false)
-    private Long counterparty_id;
+    @Column(name = "counterpartyId",nullable = false)
+    private Long counterpartyId;
     @Getter @Setter
     @Enumerated(EnumType.STRING)
     private CounterpartyTypeEnum type;
     @Getter @Setter
     private String name;
+
+    // like  Employee, Customer, Owner, Contractor
+    @Getter @Setter
+    @Enumerated(EnumType.STRING)
+    private CounterpartySubTypeEnum subType;
 
     //for type.PERSON and type.FOP - it is filled like surname
     @Getter @Setter
@@ -48,12 +56,14 @@ public class Counterparty {
     private String taxpayerLicenseNumber;
     @Getter @Setter
     private Long mainCounterparty;
-    //Todo: Enum on status for Counterparty
-    //@Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Getter @Setter
-    private String status;
-    @Getter @Setter
+    private CounterpartyStatusEnum status;
+
+    @Getter
     private Date lastStatus;
+
+    public void setLastStatus(Date lastStatus) { this.lastStatus = lastStatus; }
 
     @Getter @Setter
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "counterparty")
@@ -71,6 +81,10 @@ public class Counterparty {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "counterparty")
     private Set<Finance> finances = new HashSet<Finance>();
 
+    public Long getCounterpartyId() {
+        return counterpartyId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -78,13 +92,13 @@ public class Counterparty {
 
         Counterparty that = (Counterparty) o;
 
-        if (!counterparty_id.equals(that.counterparty_id)) return false;
+        if (!counterpartyId.equals(that.counterpartyId)) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        return counterparty_id.hashCode();
+    return (counterpartyId == null ? 0 : counterpartyId.intValue());
     }
 }

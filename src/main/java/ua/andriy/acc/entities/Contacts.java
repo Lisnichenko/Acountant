@@ -1,6 +1,7 @@
 package ua.andriy.acc.entities;
 
 import lombok.Data;
+import ua.andriy.acc.entities.Enums.ContactsTypeEnum;
 
 import javax.persistence.*;
 
@@ -12,15 +13,17 @@ import javax.persistence.*;
 public class Contacts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long contacts_id;
+    private Long contactsId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "counterparty_id", nullable = false)
+    @JoinColumn(name = "counterpartyId", nullable = false)
     private Counterparty counterparty;
     @Enumerated(EnumType.STRING)
     private ContactsTypeEnum type;
 
-    private String values;
-    private String Comments;
+    private String values, comments;
 
+    public void setCounterparty(Counterparty counterparty) {
+        this.counterparty = counterparty;
+    }
 }

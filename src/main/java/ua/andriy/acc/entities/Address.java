@@ -1,6 +1,7 @@
 package ua.andriy.acc.entities;
 
 import lombok.Data;
+import ua.andriy.acc.entities.Enums.AddressTypeEnum;
 
 import javax.persistence.*;
 
@@ -12,10 +13,10 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long address_id;
+    private Long addressId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "counterparty_id", nullable = false)
+    @JoinColumn(name = "counterpartyId", nullable = false)
     private Counterparty counterparty;
     @Enumerated(EnumType.STRING)
     private AddressTypeEnum type;
@@ -32,4 +33,7 @@ public class Address {
 
     private String Comments;
 
+    public void setCounterparty(Counterparty counterparty) {
+        this.counterparty = counterparty;
+    }
 }
