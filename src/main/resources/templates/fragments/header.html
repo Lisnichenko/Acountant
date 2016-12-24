@@ -38,7 +38,7 @@
                             <a th:href="@{~/counterparty}">Counterparty</a>
                         </li>
                         <li th:class="${activeTab == 'Salary'}? 'dropdown active' : 'dropdown'">
-                            <a th:href="@{~/salary}" data-toggle="dropdown" class="dropdown-toggle">Salary<b class="caret"></b>
+                            <a th:href="@{#}" data-toggle="dropdown" class="dropdown-toggle">Salary<b class="caret"></b>
 
                             </a>
                             <ul class="dropdown-menu" id="menu1">
@@ -60,6 +60,9 @@
                                 <!--</li>-->
                                 <li>
                                     <a th:href="@{~/salary}">Employee</a>
+                                </li>
+                                <li>
+                                    <a th:href="@{~/salarySettings}">Salary Setting</a>
                                 </li>
                                 <li>
                                     <a th:href="@{~/salary/timesheet}">Timesheet</a>

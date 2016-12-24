@@ -87,7 +87,16 @@
     <div th:replace="fragments/footer :: footer"></div>
 </div>
 <!--/.fluid-container-->
+<script th:src="@{../../../../vendors/jquery-1.9.1.js}"></script>
+<script>
+$(function() {
+    $("#backLink").on("click",function(event) {
+        event.preventDefault();
+        history.back(1);
+    });
+});
 
+</script>
 </body>
 
 </html>

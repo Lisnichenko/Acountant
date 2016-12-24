@@ -140,32 +140,9 @@
             $(".uniform_on").uniform();
             $(".chzn-select").chosen();
             $('.textarea').wysihtml5();
-
-            $('#rootwizard').bootstrapWizard({onTabShow: function(tab, navigation, index) {
-                var $total = navigation.find('li').length;
-                var $current = index+1;
-                var $percent = ($current/$total) * 100;
-
-                // Worked well need add submit function for forms,
-                // Also need to block previous functionality or use it like edit function.
-               // var $action = $('#rootwizard').find("form[name=tab"+($current-1)+"]").attr("action");
-               // alert("Find form with marked action = " + $action);
-
-                $('#rootwizard').find('.bar').css({width:$percent+'%'});
-                // If it's the last tab then hide the last button and show the finish instead
-                if($current >= $total) {
-                    $('#rootwizard').find('.pager .next').hide();
-                    $('#rootwizard').find('.pager .finish').show();
-                    $('#rootwizard').find('.pager .finish').removeClass('disabled');
-                } else {
-                    $('#rootwizard').find('.pager .next').show();
-                    $('#rootwizard').find('.pager .finish').hide();
-                }
-            }});
-
-            $('#rootwizard .finish').click(function() {
-                alert('Finished!, Starting over!');
-                $('#rootwizard').find("a[href*='tab1']").trigger('click');
+            $("#backLink").on("click",function(event) {
+                event.preventDefault();
+                history.back(1);
             });
 
 

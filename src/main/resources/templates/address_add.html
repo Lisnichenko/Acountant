@@ -151,6 +151,10 @@ $(function() {
 
         $("#fullAddress").val(str);
     });
+    $("#backLink").on("click",function(event) {
+        event.preventDefault();
+        history.back(1);
+    });
 });
 
 </script>

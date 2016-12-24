@@ -33,7 +33,7 @@
                     <div class="block-content collapse in">
                         <div class="span12">
                             <!-- BEGIN FORM-->
-                            <form id="form_sample_1" class="form-horizontal" name = "contacts"
+                            <form id="form_sample_1" class="form-horizontal" name = "finance"
                                   th:action="@{${url}}" th:object="${finance}" method="post">
                                 <fieldset>
                                     <input th:field="*{financeId}" type="hidden" />
@@ -82,7 +82,16 @@
     <div th:replace="fragments/footer :: footer"></div>
 </div>
 <!--/.fluid-container-->
+<script th:src="@{../../../../vendors/jquery-1.9.1.js}"></script>
+<script>
+$(function() {
+    $("#backLink").on("click",function(event) {
+        event.preventDefault();
+        history.back(1);
+    });
+});
 
+</script>
 </body>
 
 </html>
